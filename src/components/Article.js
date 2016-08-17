@@ -38,7 +38,7 @@ export default class Article extends Component {
         <button onClick={this.commentClick}>{buttonText}</button></section> : null
       const commentText = this.props.article.comments != undefined ? this.props.article.comments.map(comment =>
         <div key = {comment.id}>
-          <hr/> 
+          <hr/>  
           <h2>{comment.title}</h2>
           <p>{comment.text}</p>
           <p>{comment.user}</p>
