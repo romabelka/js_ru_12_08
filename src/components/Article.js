@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 
+//Не перегружай компоненты, лучше разбей на Article и CommentList
 export default class Article extends Component {
 /*
 
@@ -30,6 +31,7 @@ export default class Article extends Component {
 
     render() {
       const { article } = this.props
+      //тут можно было менять только текст
       const buttonText = this.state.commentClosed ? <button onClick={this.commentClick}>Show comments</button> : <button onClick={this.commentClick}>Hide comments</button>
       const body = this.state.isOpen ? <section>
         {article.text}
