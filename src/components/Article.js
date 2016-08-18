@@ -30,20 +30,21 @@ export default class Article extends Component {
 
     render() {
       const { article } = this.props
-      const buttonText = this.state.commentClosed ? <span>Show comments</span> : <span>Hide comments</span>
+      const buttonText = this.state.commentClosed ? <button onClick={this.commentClick}>Show comments</button> : <button onClick={this.commentClick}>Hide comments</button>
       const body = this.state.isOpen ? <section>
         {article.text}
         <br/>
         <br/>
-        <button onClick={this.commentClick}>{buttonText}</button></section> : null
+        {buttonText}
+        </section> : null
       const commentText = this.props.article.comments != undefined ? this.props.article.comments.map(comment =>
         <div key = {comment.id}>
-          <hr/>  
+          <hr/>
           <h2>{comment.title}</h2>
           <p>{comment.text}</p>
           <p>{comment.user}</p>
         </div>
-      ) : null
+      ) : <span>no comments yet</span>
       const comment = this.state.commentClosed ? null : <div className="comments_list">{commentText}</div>
       return (
           <div>
