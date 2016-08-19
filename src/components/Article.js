@@ -1,7 +1,7 @@
-import React, {Component} from 'react'
-import {Comments} from './Comments'
+import React from 'react'
+import CommentList from './CommentList'
 
-export default class Article extends Component {
+export default class Article extends React.Component {
 /*
 
     constructor() {
@@ -13,44 +13,33 @@ export default class Article extends Component {
 
 */
     state = {
-        isOpen: false,
-        isShow: false
+        isOpen: false
     }
 
     render() {
-        const {article} = this.props
+        const article = this.props.article
         const body = this.state.isOpen ? <section>{article.text}</section> : null
+        const comments = this.checkParam(article.comments)
 
         return (
             <div>
                 <h3 onClick={this.handleClick}>{article.title}</h3>
                 {body}
-                {this.showComments(article.comments)}
-                <button onClick={this.toggleComments}>Show Comments</button>
+                {comments}
             </div>
-                        
         )
+    }
+
+    checkParam(param) {
+      if (typeof param !== 'undefined') {
+        return (<CommentList comments={param}/>)
+      }
+      return null
     }
 
     handleClick = (ev) => {
         this.setState({
             isOpen: !this.state.isOpen
         })
-    }
-
-    toggleComments = (ev) => {
-        this.setState({
-            isShow: !this.state.isShow
-        })
-    }
-
-    showComments(comments) {
-        if (this.state.isShow) {
-            return (
-                <ul>
-                    <Comments comments = {comments}/>
-                </ul>
-            )
-        }
     }
 }
