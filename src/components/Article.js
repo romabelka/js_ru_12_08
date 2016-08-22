@@ -1,7 +1,8 @@
-import React, { Component } from 'react'
-import Comment from './Comment'
+import React, { Component, PropTypes } from 'react'
+import CommentList from './CommentList'
+import toggleOpen from '../decorators/toggleOpen'
 
-export default class Article extends Component {
+class Article extends Component {
 /*
 
     constructor() {
@@ -12,44 +13,20 @@ export default class Article extends Component {
     }
 
 */
-    state = {
-        isOpen: false,
-        isOpenComment: false
+    static propTypes = {
+        article: PropTypes.object.isRequired
     }
 
     render() {
-        const { article } = this.props
-        const comments = article.comments
-        const body = this.state.isOpen ? <section>{article.text}</section> : null
-        const commentTitle = this.state.isOpenComment ? 'Close comments': 'Show comments'
+        const { article: { text, title, comments}, isOpen, toggleOpen } = this.props
+        const body = isOpen ? <section>{text}<CommentList comments = {comments}/></section> : null
         return (
             <div>
-                <h3 onClick = {this.handleClick}>{article.title}</h3>
+                <h3 onClick = {toggleOpen}>{title}</h3>
                 {body}
-                {comments ?
-                    <div>
-                        {this.state.isOpenComment&& comments.map(commentObject =>
-                            <div key= {commentObject.id}>
-                                <Comment comment = {commentObject}/>
-                            </div>)}
-                        <p onClick={this.onClick}>{commentTitle}</p>
-                    </div>
-                    : <p>No comments</p>
-                }
-
             </div>
         )
     }
-
-    handleClick = (ev) => {
-        this.setState({
-            isOpen: !this.state.isOpen
-        })
-    }
-
-    onClick = () => {
-        this.setState({
-            isOpenComment: !this.state.isOpenComment
-        })
-    }
 }
+
+export default Article
