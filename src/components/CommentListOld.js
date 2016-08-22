@@ -3,6 +3,10 @@ import Comment from './Comment'
 import toggleOpen from '../mixins/toggleOpen'
 
 const CommentList = createClass({
+    propTypes: {
+        comments: React.PropTypes.object
+    },
+
     mixins: [toggleOpen],
 
     render() {
