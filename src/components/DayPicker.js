@@ -90,6 +90,7 @@ export default class LocalizedCustom extends React.Component {
                     modifiers={ { sunday: day => day.getDay() === 0 } }
                     ref="daypicker"
                     numberOfMonths={ 2 }
+                    {/*Лучше эту функцию сохранить как метод, а то и код в JSX лишний, и каждый раз пересоздается*/}
                     selectedDays={ day => DateUtils.isDayInRange(day, { from, to }) }
                     onDayClick={ this.handleDayClick }
                 />
