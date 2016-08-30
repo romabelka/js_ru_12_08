@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react'
 import { connect } from 'react-redux'
 
 function Comment(props) {
-    console.log('---', props)
     if (!props.comment) return null
     const { comment: { user, text } } = props
     return (
