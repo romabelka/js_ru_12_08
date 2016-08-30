@@ -25,7 +25,10 @@ class Container extends Component {
 }
 
 export default connect((state) => {
-    const { articles, filters: { selected, dates } } = state
+    const { articles, filters } = state
+    const selected = filters.get('selected')
+    const dates = filters.get('dates')
+
     const filteredArticles = articles
         .filter(article => !selected.length || selected.includes(article.id))
         .filter(article => {
