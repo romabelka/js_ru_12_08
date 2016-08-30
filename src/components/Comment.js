@@ -7,9 +7,13 @@ function Comment(props) {
     return (
         <p>
             {text}
-            <strong>by {user}</strong>
+            {decrateUser(user)}
         </p>
     )
+}
+
+function decrateUser(user) {
+    return <strong>by {user}</strong>
 }
 
 Comment.propTypes = {
