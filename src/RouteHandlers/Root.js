@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react'
 import { Provider } from 'react-redux'
 import store from '../store'
-import Container from '../components/Container'
 
 class Root extends Component {
     static propTypes = {
@@ -9,9 +8,12 @@ class Root extends Component {
     };
 
     render() {
+        console.log('---', this.props)
         return (
             <Provider store = {store}>
-                <Container />
+                <div>
+                    {this.props.children}
+                </div>
             </Provider>
         )
     }
