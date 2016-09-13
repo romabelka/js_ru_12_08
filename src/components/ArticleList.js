@@ -16,7 +16,7 @@ class ArticleList extends Component {
 
         const articleItems = articles.map(articleObject =>
             <li key = {articleObject.id}>
-                <Link to = {`/articles/${articleObject.id}`} >{articleObject.title}</Link>
+                <Link to = {`/articles/${articleObject.id}`}>{articleObject.title}</Link>
             </li>)
         return (
             <CSSTransition component="ul" transitionName="article" transitionLeaveTimeout ={1000} transitionEnterTimeout = {500}>
