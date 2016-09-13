@@ -5,6 +5,8 @@ import CounterPage from './RouteHandlers/CounterPage'
 import FiltersPage from './RouteHandlers/FiltersPage'
 import ArticlesPage from './RouteHandlers/ArticlesPage'
 import ArticlePage from './RouteHandlers/ArticlePage'
+import CommentsRoot from './RouteHandlers/CommentsRoot'
+import CommentsPage from './RouteHandlers/CommentsPage'
 
 export default (
     <Router history = {browserHistory}>
@@ -13,6 +15,9 @@ export default (
             <Route path = "filters" component = {FiltersPage} />
             <Route path = "articles" component = {ArticlesPage} >
                 <Route path = ":id" component = {ArticlePage} />
+            </Route>
+            <Route path = "comments" component = {CommentsRoot}>
+                <Route path = ":page" component = {CommentsPage} />
             </Route>
             {/*<Route path = "/articles/:id" component = {ArticlePage} />*/}
         </Route>
