@@ -10,6 +10,7 @@ import CommentsRoot from './RouteHandlers/CommentsRoot'
 import CommentsPage from './RouteHandlers/CommentsPage'
 import NotFoundPage from './RouteHandlers/NotFoundPage'
 import NewArticlePage from './RouteHandlers/NewArticlePage'
+import ArticleNotFound from './RouteHandlers/ArticleNotFound'
 
 export default (
     <Router history = {browserHistory}>
@@ -19,7 +20,12 @@ export default (
             <Route path = "filters" component = {FiltersPage} />
             <Route path = "articles" component = {ArticlesPage} >
                 <IndexRoute component = {IndexArticlePage} />
-                <Route path = "new" component = {NewArticlePage} />
+                <Route path = "new" component = {NewArticlePage}
+                       onEnter = {(nextState, replace) => {
+                            replace('/articles')
+                       }}
+                />
+                <Route path = "not_found" component = {ArticleNotFound} />
                 <Route path = ":id" component = {ArticlePage} />
             </Route>
             <Redirect from = "/comments" to = "/comments/1" />
