@@ -11,6 +11,7 @@ import CommentsPage from './RouteHandlers/CommentsPage'
 import NotFoundPage from './RouteHandlers/NotFoundPage'
 import NewArticlePage from './RouteHandlers/NewArticlePage'
 import ArticleNotFound from './RouteHandlers/ArticleNotFound'
+import store from './store'
 
 export default (
     <Router history = {browserHistory}>
@@ -22,7 +23,7 @@ export default (
                 <IndexRoute component = {IndexArticlePage} />
                 <Route path = "new" component = {NewArticlePage}
                        onEnter = {(nextState, replace) => {
-                            replace('/articles')
+                            if (!store.getSate().user) replace('/articles')
                        }}
                 />
                 <Route path = "not_found" component = {ArticleNotFound} />
